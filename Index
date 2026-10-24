@@ -1,0 +1,504 @@
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Empleo | Luxury Careers</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FAF4DC',
+                            300: '#F3E5AB',
+                            400: '#FFD700',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                            700: '#806000',
+                        },
+                        dark: {
+                            900: '#0B0B0C',
+                            800: '#141416',
+                            700: '#1F1F23',
+                            600: '#2A2A30'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Estilos personalizados para el degradado dorado metálico */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B2 0%, #FFD700 35%, #D4AF37 70%, #997A15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #F3E5AB 0%, #FFD700 40%, #D4AF37 70%, #B8860B 100%);
+        }
+
+        .gold-gradient-bg:hover {
+            background: linear-gradient(135deg, #FFF0B2 0%, #FFD700 50%, #E6CA65 100%);
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .gold-glow-focus:focus {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Personalización de barra de desplazamiento */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0C;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #332A15;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-200 font-sans min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-dark-900">
+
+    <!-- Encabezado / Branding -->
+    <header class="border-b border-gold-500/20 bg-dark-800/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full gold-gradient-bg flex items-center justify-center text-dark-900 font-bold text-xl shadow-lg">
+                    <i class="fa-solid font-serif">E</i>
+                </div>
+                <div>
+                    <h1 class="font-serif text-xl tracking-wide text-white font-semibold">EXCELLENCE <span class="gold-gradient-text">GROUP</span></h1>
+                    <p class="text-xs text-gold-500/70 tracking-widest uppercase">Portal de Reclutamiento</p>
+                </div>
+            </div>
+            <div class="text-right hidden sm:block">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border border-gold-500/30 text-gold-400 bg-gold-500/5">
+                    <i class="fa-solid fa-shield-halved mr-1.5 text-xs"></i> Solicitud Confidencial
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-4xl mx-auto px-4 py-10 w-full flex-grow">
+        
+        <!-- Título de la Sección -->
+        <div class="text-center mb-10">
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">
+                Solicitud de <span class="gold-gradient-text">Empleo Executive</span>
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+                Complete el formulario a continuación con sus datos profesionales para iniciar su proceso de selección institucional.
+            </p>
+            <div class="w-24 h-1 gold-gradient-bg mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <!-- Formulario -->
+        <div id="formContainer" class="bg-dark-800 border border-gold-500/30 rounded-2xl p-6 sm:p-10 gold-glow transition-all duration-300">
+            <form id="jobApplicationForm" class="space-y-6" novalidate>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- 1. Nombre Completo -->
+                    <div class="space-y-2">
+                        <label for="nombre" class="block text-sm font-medium text-gold-300">
+                            Nombre Completo <span class="text-gold-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                <i class="fa-regular fa-user"></i>
+                            </span>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ej. Carlos Mendoza Ramos" 
+                                class="w-full bg-dark-700/80 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 gold-glow-focus transition-all duration-200">
+                        </div>
+                        <p id="error-nombre" class="text-red-400 text-xs hidden flex items-center gap-1 mt-1">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span>Ingrese un nombre válido (mínimo 3 caracteres).</span>
+                        </p>
+                    </div>
+
+                    <!-- 2. Edad -->
+                    <div class="space-y-2">
+                        <label for="edad" class="block text-sm font-medium text-gold-300">
+                            Edad <span class="text-gold-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                <i class="fa-regular fa-calendar"></i>
+                            </span>
+                            <input type="number" id="edad" name="edad" min="18" max="99" placeholder="Ej. 28" 
+                                class="w-full bg-dark-700/80 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 gold-glow-focus transition-all duration-200">
+                        </div>
+                        <p id="error-edad" class="text-red-400 text-xs hidden flex items-center gap-1 mt-1">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span>Debe ser mayor de edad (18 - 99 años).</span>
+                        </p>
+                    </div>
+
+                    <!-- 3. RFC -->
+                    <div class="space-y-2">
+                        <label for="rfc" class="block text-sm font-medium text-gold-300">
+                            RFC <span class="text-gold-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                <i class="fa-solid fa-id-card"></i>
+                            </span>
+                            <input type="text" id="rfc" name="rfc" placeholder="ABCD880101XXX"
+                                class="w-full bg-dark-700/80 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-500 uppercase focus:outline-none focus:border-gold-500 gold-glow-focus transition-all duration-200">
+                        </div>
+                        <p id="error-rfc" class="text-red-400 text-xs hidden flex items-center gap-1 mt-1">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span>Estructura de RFC inválida (Ejemplo: VECJ880326XXX o ABC010101XXX).</span>
+                        </p>
+                    </div>
+
+                    <!-- 6. Sucursal más cercana -->
+                    <div class="space-y-2">
+                        <label for="sucursal" class="block text-sm font-medium text-gold-300">
+                            Sucursal Preferente <span class="text-gold-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                                <i class="fa-solid fa-building-user"></i>
+                            </span>
+                            <select id="sucursal" name="sucursal" 
+                                class="w-full bg-dark-700/80 border border-gray-700 rounded-lg pl-10 pr-10 py-3 text-white appearance-none focus:outline-none focus:border-gold-500 gold-glow-focus transition-all duration-200">
+                                <option value="" disabled selected class="text-gray-500">Seleccione una sucursal</option>
+                                <option value="Sucursal Corporativo CDMX (Reforma)">Sucursal Corporativo CDMX (Reforma)</option>
+                                <option value="Sucursal Monterrey (San Pedro)">Sucursal Monterrey (San Pedro)</option>
+                                <option value="Sucursal Guadalajara (Andares)">Sucursal Guadalajara (Andares)</option>
+                                <option value="Sucursal Querétaro (Juriquilla)">Sucursal Querétaro (Juriquilla)</option>
+                                <option value="Sucursal Cancún (Zona Hotelera)">Sucursal Cancún (Zona Hotelera)</option>
+                            </select>
+                            <span class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-gold-500">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </div>
+                        <p id="error-sucursal" class="text-red-400 text-xs hidden flex items-center gap-1 mt-1">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span>Por favor seleccione una sucursal de preferencia.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Sexo -->
+                <div class="space-y-2 pt-2">
+                    <label class="block text-sm font-medium text-gold-300">
+                        Sexo <span class="text-gold-500">*</span>
+                    </label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="radio" name="sexo" value="Masculino" class="w-4 h-4 text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300">Masculino</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="radio" name="sexo" value="Femenino" class="w-4 h-4 text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300">Femenino</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="radio" name="sexo" value="Otro" class="w-4 h-4 text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300">Otro</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="radio" name="sexo" value="Prefiero no decir" class="w-4 h-4 text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300">Prefiero no decir</span>
+                        </label>
+                    </div>
+                    <p id="error-sexo" class="text-red-400 text-xs hidden flex items-center gap-1 mt-1">
+                        <i class="fa-solid fa-circle-exclamation"></i> <span>Seleccione una opción de sexo.</span>
+                    </p>
+                </div>
+
+                <!-- 5. Habilidades Tecnológicas -->
+                <div class="space-y-2 pt-2">
+                    <label class="block text-sm font-medium text-gold-300">
+                        Habilidades Tecnológicas <span class="text-gold-500">*</span> <span class="text-xs text-gray-400 font-normal">(Seleccione al menos una)</span>
+                    </label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="checkbox" name="habilidades" value="Desarrollo Web" class="w-4 h-4 rounded text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300"><i class="fa-solid fa-code text-gold-400 mr-1.5"></i> Desarrollo Web</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="checkbox" name="habilidades" value="Bases de Datos" class="w-4 h-4 rounded text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300"><i class="fa-solid fa-database text-gold-400 mr-1.5"></i> Bases de Datos</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="checkbox" name="habilidades" value="Python" class="w-4 h-4 rounded text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300"><i class="fa-brands fa-python text-gold-400 mr-1.5"></i> Python</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="checkbox" name="habilidades" value="JavaScript" class="w-4 h-4 rounded text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300"><i class="fa-brands fa-js text-gold-400 mr-1.5"></i> JavaScript</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="checkbox" name="habilidades" value="Cloud / AWS" class="w-4 h-4 rounded text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300"><i class="fa-solid fa-cloud text-gold-400 mr-1.5"></i> Cloud / AWS</span>
+                        </label>
+                        <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-dark-700/40 cursor-pointer hover:border-gold-500/50 transition-all">
+                            <input type="checkbox" name="habilidades" value="Ciberseguridad" class="w-4 h-4 rounded text-gold-500 bg-dark-900 border-gray-600 focus:ring-gold-500 accent-amber-500">
+                            <span class="ml-2.5 text-sm text-gray-300"><i class="fa-solid fa-user-shield text-gold-400 mr-1.5"></i> Ciberseguridad</span>
+                        </label>
+                    </div>
+                    <p id="error-habilidades" class="text-red-400 text-xs hidden flex items-center gap-1 mt-1">
+                        <i class="fa-solid fa-circle-exclamation"></i> <span>Seleccione al menos una habilidad tecnológica.</span>
+                    </p>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="pt-6">
+                    <button type="submit" class="w-full py-4 px-6 rounded-xl font-semibold text-dark-900 gold-gradient-bg shadow-lg hover:shadow-gold-500/20 active:scale-[0.99] transition-all duration-200 flex items-center justify-center space-x-2 text-base tracking-wider uppercase">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Enviar Solicitud</span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Tarjeta de Resumen / Resultados Guardados (Oculto inicialmente) -->
+        <div id="summaryCard" class="hidden bg-dark-800 border-2 border-gold-500 rounded-2xl p-6 sm:p-10 gold-glow transition-all duration-500 transform">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 rounded-full gold-gradient-bg text-dark-900 flex items-center justify-center mx-auto mb-4 text-2xl shadow-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-1">¡Solicitud Registrada con Éxito!</h3>
+                <p class="text-gold-400 text-sm">Los datos ingresados han sido procesados y guardados correctamente.</p>
+            </div>
+
+            <!-- Resumen de Datos -->
+            <div class="bg-dark-900/80 border border-gold-500/20 rounded-xl p-6 space-y-4 mb-8">
+                <h4 class="text-xs uppercase tracking-widest text-gold-500 font-semibold border-b border-gold-500/20 pb-2">
+                    Datos Registrados / Guardados
+                </h4>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="text-gray-400 block text-xs">Nombre Completo:</span>
+                        <span id="res-nombre" class="text-white font-medium text-base"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400 block text-xs">Edad:</span>
+                        <span id="res-edad" class="text-white font-medium text-base"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400 block text-xs">RFC Registrado:</span>
+                        <span id="res-rfc" class="text-gold-300 font-mono text-base font-semibold"></span>
+                    </div>
+                    <div>
+                        <span class="text-gray-400 block text-xs">Sexo:</span>
+                        <span id="res-sexo" class="text-white font-medium text-base"></span>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <span class="text-gray-400 block text-xs">Sucursal Seleccionada:</span>
+                        <span id="res-sucursal" class="text-white font-medium text-base"></span>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <span class="text-gray-400 block text-xs mb-1.5">Habilidades Tecnológicas:</span>
+                        <div id="res-habilidades" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button id="btnNewForm" class="flex-1 py-3 px-4 rounded-lg bg-dark-700 hover:bg-dark-600 text-gold-300 border border-gold-500/30 transition-all font-medium text-sm flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Registrar Otra Solicitud</span>
+                </button>
+                <button onclick="window.print()" class="flex-1 py-3 px-4 rounded-lg gold-gradient-bg text-dark-900 font-semibold hover:opacity-95 transition-all text-sm flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Imprimir Comprobante</span>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="border-t border-gold-500/10 bg-dark-900 text-center py-6 text-xs text-gray-500">
+        <p>© 2026 Excellence Group Ltd. Todos los derechos reservados.</p>
+        <p class="mt-1 text-gold-500/40">Evidencia de Aprendizaje - Formulario & Validación con JavaScript</p>
+    </footer>
+
+    <!-- Lógica JavaScript de Validación e Interacción -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('jobApplicationForm');
+            const formContainer = document.getElementById('formContainer');
+            const summaryCard = document.getElementById('summaryCard');
+            const btnNewForm = document.getElementById('btnNewForm');
+
+            // Elementos de Entrada
+            const inputNombre = document.getElementById('nombre');
+            const inputEdad = document.getElementById('edad');
+            const inputRfc = document.getElementById('rfc');
+            const selectSucursal = document.getElementById('sucursal');
+
+            // Convertir RFC a mayúsculas automáticamente durante la escritura
+            inputRfc.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+                validateRfcField();
+            });
+
+            // Validaciones dinámicas en eventos input / change
+            inputNombre.addEventListener('input', validateNombreField);
+            inputEdad.addEventListener('input', validateEdadField);
+            selectSucursal.addEventListener('change', validateSucursalField);
+
+            document.querySelectorAll('input[name="sexo"]').forEach(radio => {
+                radio.addEventListener('change', validateSexoField);
+            });
+
+            document.querySelectorAll('input[name="habilidades"]').forEach(chk => {
+                chk.addEventListener('change', validateHabilidadesField);
+            });
+
+            // Funciones de validación individuales
+            function validateNombreField() {
+                if (inputNombre.value.trim().length < 3) {
+                    showError('nombre');
+                    return false;
+                }
+                hideError('nombre');
+                return true;
+            }
+
+            function validateEdadField() {
+                const edadVal = parseInt(inputEdad.value, 10);
+                if (isNaN(edadVal) || edadVal < 18 || edadVal > 99) {
+                    showError('edad');
+                    return false;
+                }
+                hideError('edad');
+                return true;
+            }
+
+            function validateRfcField() {
+                // Expresión regular oficial para RFC de Persona Física o Moral
+                const rfcRegex = /^([A-Z&Ñ]{3,4})(\d{6})([A-Z0-9]{3})$/;
+                if (!rfcRegex.test(inputRfc.value.trim())) {
+                    showError('rfc');
+                    return false;
+                }
+                hideError('rfc');
+                return true;
+            }
+
+            function validateSucursalField() {
+                if (!selectSucursal.value) {
+                    showError('sucursal');
+                    return false;
+                }
+                hideError('sucursal');
+                return true;
+            }
+
+            function validateSexoField() {
+                const sexoSelected = document.querySelector('input[name="sexo"]:checked');
+                if (!sexoSelected) {
+                    showError('sexo');
+                    return false;
+                }
+                hideError('sexo');
+                return true;
+            }
+
+            function validateHabilidadesField() {
+                const habilidadesSelected = document.querySelectorAll('input[name="habilidades"]:checked');
+                if (habilidadesSelected.length === 0) {
+                    showError('habilidades');
+                    return false;
+                }
+                hideError('habilidades');
+                return true;
+            }
+
+            // Mostrar y Ocultar Errores
+            function showError(field) {
+                const errorEl = document.getElementById(`error-${field}`);
+                if (errorEl) errorEl.classList.remove('hidden');
+            }
+
+            function hideError(field) {
+                const errorEl = document.getElementById(`error-${field}`);
+                if (errorEl) errorEl.classList.add('hidden');
+            }
+
+            // Manejador del Evento Submit con validación estricta
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const isNombreValid = validateNombreField();
+                const isEdadValid = validateEdadField();
+                const isRfcValid = validateRfcField();
+                const isSucursalValid = validateSucursalField();
+                const isSexoValid = validateSexoField();
+                const isHabilidadesValid = validateHabilidadesField();
+
+                const isFormValid = isNombreValid && isEdadValid && isRfcValid && isSucursalValid && isSexoValid && isHabilidadesValid;
+
+                if (isFormValid) {
+                    // Extraer los valores procesados
+                    const nombre = inputNombre.value.trim();
+                    const edad = inputEdad.value.trim();
+                    const rfc = inputRfc.value.trim();
+                    const sexo = document.querySelector('input[name="sexo"]:checked').value;
+                    const sucursal = selectSucursal.value;
+                    
+                    const habilidades = Array.from(document.querySelectorAll('input[name="habilidades"]:checked'))
+                        .map(cb => cb.value);
+
+                    // Insertar datos en la sección de resumen
+                    document.getElementById('res-nombre').textContent = nombre;
+                    document.getElementById('res-edad').textContent = `${edad} años`;
+                    document.getElementById('res-rfc').textContent = rfc;
+                    document.getElementById('res-sexo').textContent = sexo;
+                    document.getElementById('res-sucursal').textContent = sucursal;
+
+                    const habContainer = document.getElementById('res-habilidades');
+                    habContainer.innerHTML = '';
+                    habilidades.forEach(hab => {
+                        const badge = document.createElement('span');
+                        badge.className = 'px-3 py-1 bg-gold-500/10 border border-gold-500/30 text-gold-300 rounded-full text-xs font-medium';
+                        badge.textContent = hab;
+                        habContainer.appendChild(badge);
+                    });
+
+                    // Ocultar el formulario y desplegar la tarjeta elegante de datos guardados
+                    formContainer.classList.add('hidden');
+                    summaryCard.classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            // Reiniciar Formulario para nuevo registro
+            btnNewForm.addEventListener('click', function() {
+                form.reset();
+                summaryCard.classList.add('hidden');
+                formContainer.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
